@@ -1,21 +1,23 @@
 var Beam = require('beam-client-node');
 var BeamSocket = require('beam-client-node/lib/ws');
+var conConf = require('./config/connection.js');
 
-var channel = "channel";
 var beam = new Beam();
 var socket;
 
 var userID = 0;
 var channelID = 0;
 
+
+
 //TODO build up a listener list here
 
 beam.use('password', {
-    username: 'user'
-    , password: 'password'
+    username: conConf.user
+    , password: conConf.password
 }).attempt().then(function (res) {
     userID = res.body.id;
-    return beam.request('get', '/channels/' + channel);
+    return beam.request('get', '/channels/' + conConf.channel);
 }).then(function (res) {
     channelID = res.body.id;
     return beam.chat.join(res.body.id);
@@ -25,6 +27,10 @@ beam.use('password', {
     return socket.call('auth', [channelID, userID, data.authkey]);
 }).then(function () {
     console.log('You are now authenticated!');
+    socket.get('beam.pro/api/v1/live').then(function (result) {
+        console.log(result);
+    });
+
     socket.on('ChatMessage', function (data) {
         //console.log(data);
         //console.log(data.message.message);
