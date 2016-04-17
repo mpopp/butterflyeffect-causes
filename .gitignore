@@ -31,3 +31,6 @@ node_modules
 
 # Optional REPL history
 .node_repl_history
+
+# config files - one at a time to enable initial config commits (don't replace this by a wildcard!)
+config/connection.js
