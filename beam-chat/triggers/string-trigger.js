@@ -1,6 +1,6 @@
 var util = require('util');
 var EventEmitter = require('events').EventEmitter;
-var TriggerConstants = require('./trigger-constants.js');
+var TriggerConstants = require('../trigger-utils/trigger-constants.js');
 
 /*
 This trigger is able to listen and react to data containing the field data.fullMessage.

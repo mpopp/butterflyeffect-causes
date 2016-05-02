@@ -1,12 +1,12 @@
 var connectionConfig = require('./config/connection.js');
 
 /******** SOURCES ******/
-var BeamChatSource = require('./sources/beam-chat-source.js');
-var BeamLiveLoadingSource = require('./sources/beam-liveloading-source.js');
+var BeamChatSource = require('./beam-chat/beam-chat-source.js');
+var BeamLiveLoadingSource = require('./beam-liveloading/beam-liveloading-source.js');
 
 /******** TRIGGERS ******/
-var TriggerConstants = require('./triggers/trigger-constants.js');
-var StringTrigger = require('./triggers/string-trigger.js');
+var TriggerConstants = require('./trigger-utils/trigger-constants.js');
+var StringTrigger = require('./beam-chat/triggers/string-trigger.js');
 
 
 //notification 
