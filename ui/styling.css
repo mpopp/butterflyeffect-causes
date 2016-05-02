@@ -1,0 +1,32 @@
+.image {
+    left: 20px;
+    top: 20px;
+    position: relative;
+}
+
+.notification-block {
+    display: none;
+    position: absolute;
+    top: 145px;
+    left: 525px;
+    transform: scale(0.8);
+    font-family: 'Open Sans';
+}
+
+.notification {
+    color: rgb(255, 255, 255);
+    width: 1000px;
+    height: 256px;
+    display: block;
+    background-color: #4c0047;
+}
+
+.notification-text {
+    position: fixed;
+    left: 290px;
+    top: 50px;
+    width: 650px;
+    text-align: left;
+    text-overflow: clip;
+    font-size: x-large;
+}
