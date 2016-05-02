@@ -57,27 +57,25 @@ gdChat.on('ChatMessage', function (data) {
 
 /******* NOTIFICATIONS SERVER ************/
 var express = require('express');
+var http = require('http');
 var app = express();
-app.use(express.static('ui'));
-app.listen(3000);
-var io = require('socket.io')
-var server = require('http').createServer(app);
+var server = http.createServer(app);
+var io = require('socket.io').listen(server);
 
-io.on('connection', function(client){
+app.use(express.static('ui'));
+
+io.on('connection', function (client) {
     console.log('Client connected....');
-    client.emit('notification',  {
-     media : {
-         icon: "",
-         sound: ""
-         },
-     text: "Notification client and server connected successfully!",
-     fade: 3, //in seconds,
-     cause: "client connect"
- });
-    
+    client.emit('notification', {
+        media: {
+            icon: ""
+            , sound: ""
+        }
+        , text: "Notification client and server connected successfully!"
+        , fade: 3, //in seconds,
+        cause: "client connect"
+    });
+
 })
 
-
-
-
-
+server.listen(3000);

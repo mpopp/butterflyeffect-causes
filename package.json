@@ -1,0 +1,10 @@
+{
+  "name": "butterfly-notifications",
+  "version": "0.0.1",
+  "dependencies": {
+    "beam-client-node": "git://github.com/WatchBeam/beam-client-node.git",
+    "express": "^4.13.4",
+    "socket.io": "^1.4.5",
+    "wsabi-client-bacon": "git://github.com/mpopp/wsabi-client-bacon.git"
+  }
+}
