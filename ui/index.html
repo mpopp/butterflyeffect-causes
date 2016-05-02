@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="notifications.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" href="styling.css">
+    <script>
+        var socket = io.connect('http://localhost:3000');
+        socket.on('notification', function(notification){
+            showNotification(notification);
+        });
+    </script>
+<div style="background-color: #ffffff">
+    <div id="notification" class="notification-block">
+        <div class="notification">
+            <div class="videoplayer"></div>
+            <img id="notification-icon" class="image" src="https://beam.pro/api/v1/users/77608/avatar?w=216&h=216&v=0?0">
+
+            <div class="notification-text">
+                <h2 id="notification-header">Test Follower</h2>
+                <h3 id="notification-description">followed the channel.</h3></div>
+        </div>
+    </div>
+</div>
+</head>
+<body>
+</body>
+</html>
