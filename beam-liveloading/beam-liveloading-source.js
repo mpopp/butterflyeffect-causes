@@ -19,7 +19,7 @@ var BeamLiveloadingSource = function (config) {
             client.live('channel:' + res.id + ':followed').then(function (res) {
                 res.onValue(function (value) {
                     console.log('Follow/Unfollow', value);
-                    if (value.follow) {
+                    if (value.following) {
                         self.emit('followed', value);
                     } else {
                         self.emit('unfollowed', value);
@@ -32,7 +32,7 @@ var BeamLiveloadingSource = function (config) {
                 //console.log(res);
 
                 res.onValue(function (value) {
-                    console.log('update', value);
+                    //console.log('update', value);
                     self.emit('update', value);
                 })
             });

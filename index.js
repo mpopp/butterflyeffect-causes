@@ -14,6 +14,7 @@ var BotCommandTrigger = require('./beam-chat/triggers/bot-command-trigger.js');
 var ChatlineCounterTrigger = require('./beam-chat/triggers/chatline-counter-trigger.js');
 var StringCounterTrigger = require('./beam-chat/triggers/string-counter-trigger.js');
 
+var FollowTrigger = require('./beam-liveloading/triggers/follow-trigger.js');
 
 //notification 
 /*{
@@ -117,18 +118,34 @@ gdChat.on('ChatMessage', function (data) {
     mooseCounters.execute(data);
 });
 
+
+
+var followTrigger = new FollowTrigger({
+    media: {
+        icon: "",
+        sound: ""
+    },
+    text: "%s is an awesome persone because follow and stuff!",
+    fade: 3, //in seconds,
+    cause: "follow"
+});
+
+/*
+gdLiveLoading.on('followed', function (data) {
+    followTrigger.execute(data);
+});
+
+gdLiveLoading.on('unfollowed', function (data) {
+    console.log(data)
+});
+*/
+
 /*
 gdLiveLoading.on('update', function (data) {
     console.log("hey we got another update!");
     console.log(data);
 });
-
-gdLiveloading.on('live', function(data){
-    //what if your stream dies for .. let's say a minute?
-    triggers.forEach(trigger.reset());
-});
 */
-
 
 /******* NOTIFICATIONS SERVER ************/
 var express = require('express');
@@ -180,6 +197,11 @@ io.on('connection', function (client) {
         client.emit('notification', event.notification);
     });
     mooseCounters.on(TriggerConstants.triggerFiredEvent, function (event) {
+        client.emit('notification', event.notification);
+    });
+
+    followTrigger.on(TriggerConstants.triggerFiredEvent, function (event) {
+        event.notification.text = sprintf(event.notification.text, event.username);
         client.emit('notification', event.notification);
     });
 })
