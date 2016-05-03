@@ -13,19 +13,14 @@ var StringTrigger = function (triggerString, notification) {
     self.notification = notification;
 
     self.execute = function (data) {
-        console.log("wordToWatch: " + self.wordToWatch);
         if (data.fullMessage.toLowerCase().indexOf(this.wordToWatch.toLowerCase()) > -1) {
-            console.log("emitting the trigger now");
             self.emit(TriggerConstants.triggerFiredEvent, {
-                trigger: 'StringTrigger'
-                , string: self.wordToWatch
-                , notification: self.notification
+                trigger: 'StringTrigger',
+                string: self.wordToWatch,
+                notification: self.notification
             });
         }
     }
 }
 util.inherits(StringTrigger, EventEmitter);
-
-
-
 module.exports = StringTrigger;
